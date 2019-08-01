@@ -17,6 +17,8 @@
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="shortcut icon" href="images/icons/fav.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/simpletextrotator.css">
+    <link rel="stylesheet" href="OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
     <!--animaciones  para la página-->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -118,9 +120,10 @@
                 <div class="col-xs-12 col-sm-12 col-md-7 ">
                     <img src="images/icons/Logo.png" alt="Logo" width="120" class="imagen-logo">
                     <h1 class="">¡En Tarian Protegemos Tu Patrimonio! </h1>
-                    
+
                     <h4 class="envios3-title">¿Buscas vender, rentar o comprar una casa y minimizar riesgos?</h4>
-                    <p class="white"> Como despacho jurídico te ofrecemos el beneficio de proteger tu patrimonio ante los riegos del
+                    <p class="white"> Como despacho jurídico te ofrecemos el beneficio de proteger tu patrimonio ante
+                        los riegos del
                         arrendamiento. No te dejes engañar, no todo es lo que parece.</p> <br>
 
                     <h3 class="subt"><span class="rotate">Servicios Jurídicos Inmobiliarios | Investigación |
@@ -130,52 +133,55 @@
 
 
                     <div class="row centrar">
-                        <a href="tel:+52(81)83654726"> <button class="btn-1" data-aos="fade-left"
-                                data-aos-duration="1800"> Llámanos</button></a>
-                                <a href="#polizas"> <button class="btn-poliza" data-aos="fade-left"
-                                    data-aos-duration="1800"> Ver Pólizas</button></a>
+                        <a href="tel:+52(81)83654726">
+                            <button class="btn-1" data-aos="fade-left" data-aos-duration="1800"> Llámanos</button>
+                        </a>
+                        <a href="#polizas"> 
+                            <button class="btn-poliza" data-aos="fade-left" data-aos-duration="1800">
+                                Ver Pólizas
+                            </button>
+                        </a>
                     </div>
                 </div>
                 <div class="COL-XS-12 contacto col-sm-12 col-md-4 ml-auto oculto-1">
                     <h3 class="white contact-texto">Déjanos tus datos y te llamaremos en breve.</h3>
-                    <form id="contact-form" method="post" role="form" action="mail/formulario-contacto.php">
+                    <form id="contact-form" method="post" role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                        <div id="mensajeErr-Status" class="correct"></div>
                         <div class="ajax-hidden">
                             <div class="form-group">
                                 <label class="sr-only" for="c_name">Nombre</label>
                                 <input type="text" id="c_name" class="form-control" name="c_name" placeholder="Nombre">
+                                <div id="nombre-status" class="status-fields"></div>
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="c_phone">Teléfono </label>
                                 <input type="tel" id="c_phone" class="form-control" name="c_phone"
                                     placeholder="Teléfono">
+                                <div id="telefono-status" class="status-fields"></div>
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="c_email">E-mail </label>
                                 <input type="email" id="c_email" class="form-control" name="c_email"
                                     placeholder="E-mail">
+                                <div id="email-status" class="status-fields"></div>
                             </div>
                             <div class="form-group">
                                 <textarea class="form-control" id="c_message" name="c_message" rows="7"
                                     placeholder="Mensaje"></textarea>
+                                <div id="mensaje-status" class="status-fields"></div>
                             </div>
-                            <div class="form-group">
-                                <div class="form-row">
-
-
-                                    <div class="col-md-1 align-self-center">
-                                        <input type="checkbox" name="c_terms" id="c_terms">
-                                    </div>
-                                    <div class="col-md-11 align-self-center">
-                                        <label for="c_terms" style="color:white;">Acepto
-                                                Política de privacidad</label>
-                                    </div>
-                                    <div id="terms-status2" class="status-fields"></div>
-                                </div>
+                            <div class="form-check">
+                                <input type="checkbox" name="c_terms" class="form-check-input" id="cterms">
+                                <label class="form-check-label" for="cterms" style="color:white;">Acepto política de
+                                    privacidad </label>
+                                
                             </div>
+                            <div id="terms-status" class="status-fields"></div>
 
-                            <button type="submit" class="btn-enviar">
+                            <button type="submit" class="btn-enviar" id="btn-ajax">
                                 Enviar
                             </button>
+                            <input type="hidden" name="ajax">
                         </div>
                         <div class="ajax-response"></div>
                     </form>
@@ -189,7 +195,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-7 envios-section">
                     <h2 class="envios2-title">Protege tu patrimonio ahora!</h2>
-                    
+
                     <p> Con nuestras <strong>Pólizas jurídica de arrendamiento</strong></p>
                 </div>
                 <div class="col-xs-12 col-sm-5 envios-mapa">
@@ -345,7 +351,7 @@
                             <th scope="row">
                                 Asistencia de un abogado a la firma del contrato
                             </th>
-                            
+
                             <td><img src="images/icons/correct-symbol.png" alt="" class="img-check"></td>
                             <td><img src="images/icons/correct-symbol.png" alt="" class="img-check"></td>
                             <td><img src="images/icons/correct-symbol.png" alt="" class="img-check"></td>
@@ -426,23 +432,46 @@
                 </div>
             </div>
 
-            <div class="row" data-aos="fade">
-                <div class="col-xs-12 col-sm-12 col-md-3">
-                    <img src="images/icons/Recurso20.png" alt="Clientes-Tarian" class="clientes-logo">
+            <div class="oculta-md">
+                <div class="row" data-aos="fade">
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <img src="images/icons/Recurso20.png" alt="Clientes-Tarian" class="clientes-logo">
+                    </div>
+                
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <img src="images/icons/Recurso21.png" alt="Clientes-Tarian" class="clientes-logo">
+                    </div>
+                
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <img src="images/icons/Recurso22.png" alt="Clientes-Tarian" class="clientes-logo">
+                    </div>
+                
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <img src="images/icons/Recurso23.png" alt="Clientes-Tarian" class="clientes-logo">
+                    </div>
+                    <!--/col-->
                 </div>
+            </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-3">
-                    <img src="images/icons/Recurso21.png" alt="Clientes-Tarian" class="clientes-logo">
+            <div class="oculta-lg">
+                <div class="row owl-carousel owl-theme" data-aos="fade">
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <img src="images/icons/Recurso20.png" alt="Clientes-Tarian" class="clientes-logo">
+                    </div>
+                
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <img src="images/icons/Recurso21.png" alt="Clientes-Tarian" class="clientes-logo">
+                    </div>
+                
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <img src="images/icons/Recurso22.png" alt="Clientes-Tarian" class="clientes-logo">
+                    </div>
+                
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <img src="images/icons/Recurso23.png" alt="Clientes-Tarian" class="clientes-logo">
+                    </div>
+                    <!--/col-->
                 </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-3">
-                    <img src="images/icons/Recurso22.png" alt="Clientes-Tarian" class="clientes-logo">
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-3">
-                    <img src="images/icons/Recurso23.png" alt="Clientes-Tarian" class="clientes-logo">
-                </div>
-                <!--/col-->
             </div>
             <!--/row-->
         </div>
@@ -458,52 +487,49 @@
 
                     <hr style="border: 2px solid #61AA8B; width:20%; margin-bottom: 0px"> <br>
                     <span class="subtitulo-servicios" style="width:60%;">Será un gusto contactarnos contigo.</span>
-                    <form style="padding: 30px 20px;" action="mail/FormularioContacto.php" id="contact-form"
+                    <form style="padding: 30px 20px;" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="contact-form2"
                         method="post" role="form">
                         <div class="ajax-hidden">
                             <div class="form-group">
-                                <label class="sr-only" for="c_name">Nombre</label>
-                                <input type="text" id="c_name" class="form-control" name="c_name" placeholder="Nombre">
+                                <label class="sr-only" for="c_name2">Nombre</label>
+                                <input type="text" id="c_name2" class="form-control" name="c_name2" placeholder="Nombre">
+                                <div id="nombre-status2" class="status-fields"></div>
                             </div>
                             <div class="form-group">
-                                <label class="sr-only" for="c_phone">Telefono </label>
-                                <input type="tel" id="c_phone" class="form-control" name="c_phone"
+                                <label class="sr-only" for="c_phone2">Telefono </label>
+                                <input type="tel" id="c_phone2" class="form-control" name="c_phone2"
                                     placeholder="Teléfono">
+                                <div id="telefono-status2" class="status-fields"></div>
                             </div>
                             <div class="form-group">
-                                <label class="sr-only" for="c_email">E-mail </label>
-                                <input type="email" id="c_email" class="form-control" name="c_email"
+                                <label class="sr-only" for="c_email2">E-mail </label>
+                                <input type="email" id="c_email2" class="form-control" name="c_email2"
                                     placeholder="E-mail">
+                                <div id="email-status2" class="status-fields"></div>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" id="c_message" name="c_message" rows="7"
+                                <textarea class="form-control" id="c_message2" name="c_message2" rows="7"
                                     placeholder="Mensaje"></textarea>
+                                <div id="mensaje-status2" class="status-fields"></div>
                             </div>
-                            <div class="form-group">
-                                <div class="row">
-
-
-                                    <div class="col-md-1 align-self-center">
-                                        <input type="checkbox" name="c_terms" id="c_terms">
-                                    </div>
-                                    <div class="col-md-11 align-self-center">
-                                        <label for="c_terms" style="">Acepto política de privacidad </label>
-                                    </div>
-                                    <div id="terms-status2" class="status-fields"></div>
-                                </div>
+                            <div class="form-check">
+                                <input type="checkbox" name="c_terms2" class="form-check-input" id="cterms2">
+                                <label class="form-check-label" for="cterms2">Acepto política de privacidad </label>
                             </div>
+                            <div id="terms-status2" class="status-fields"></div>
 
-                            <button type="submit" class="btn-enviar">
+                            <button type="submit" class="btn-enviar" id="btn-ajax2">
                                 ENVIAR
                             </button>
+                            <div id="mensajeErr-Status2" class="correct"></div>
+                            <input type="hidden" name="ajax2">
                         </div>
                         <div class="ajax-response"></div>
                     </form>
 
                 </div>
-
-                <div>
-                </div>
+            </div>
+        </div>
     </section>
 
 
@@ -521,16 +547,16 @@
                     </p>
                     <br>
                     <div class="oculto-movil">
-                            <p class="white">&copy;Copyright Tarian Servicios Jurídicos 2019. Todos los derechos reservados 
-                                    <a class="color" href="privacidad.html"> Política de
-                                        Privacidad |
-                                    </a>
-                                    <a class="color" href="http://www.3e-digital.com/" target="_blank">
-                                        Diseñado por 3e-Digital
-                                    </a>
-                                </p>
+                        <p class="white">&copy;Copyright Tarian Servicios Jurídicos 2019. Todos los derechos reservados
+                            <a class="color" href="privacidad.html"> Política de
+                                Privacidad |
+                            </a>
+                            <a class="color" href="http://www.3e-digital.com/" target="_blank">
+                                Diseñado por 3e-Digital
+                            </a>
+                        </p>
                     </div>
-                
+
                 </div>
 
                 <div class="col-6 col-sm-6 col-md-2 align-self-end">
@@ -554,7 +580,7 @@
                     </div>
 
                 </div>
-                
+
 
                 <div class="col-6 col-sm-6 col-md-4 align-self-end">
                     <h3 class="white">CONTÁCTANOS</h3>
@@ -567,13 +593,13 @@
                         </li>
                         <li>
                             <a href="tel:8113462423">
-                                <i class=" white"> </i> 
+                                <i class=" white"> </i>
                                 <span class="padding-phones">81 1346 2423</a></span>
                             </a>
                         </li>
                         <li>
                             <a href="tel:8117445945">
-                                <i class=" white"> </i> 
+                                <i class=" white"> </i>
                                 <span class="padding-phones">81 1744 5945</span>
                             </a>
                         </li>
@@ -583,24 +609,23 @@
                             </a>
                         </li>
                         <li class="oculto-web">
-                                <a href="mailto:abogados@tarianasesores.com.mx" >
-                                    <i class="fas fa-envelope white"></i><span style="
+                            <a href="mailto:abogados@tarianasesores.com.mx">
+                                <i class="fas fa-envelope white"></i><span style="
                                     margin-left:14px;">Email</span>
-                                </a>
-                            </li>
+                            </a>
+                        </li>
                     </ul>
                 </div>
-                <div class="oculto-web" style="
-                margin-left:14px; margin-right=15px; text-align:left;">
-                        <p class="white" style="text-align:left">&copy;Copyright Tarian Servicios Jurídicos 2019.
-                             Todos los derechos reservados. 
-                              <br>  <a class="color" href="privacidad.html"> Política de
-                                    Privacidad |
-                                </a>
-                                <a class="color" href="http://www.3e-digital.com/" target="_blank">
-                                    Diseñado por 3e-Digital
-                                </a>
-                            </p>
+                <div class="oculto-web" style="margin-left:14px; margin-right:15px; text-align:left;">
+                    <p class="white" style="text-align:left">&copy;Copyright Tarian Servicios Jurídicos 2019.
+                        Todos los derechos reservados.
+                        <br> <a class="color" href="privacidad.html"> Política de
+                            Privacidad |
+                        </a>
+                        <a class="color" href="http://www.3e-digital.com/" target="_blank">
+                            Diseñado por 3e-Digital
+                        </a>
+                    </p>
                 </div>
 
             </div>
@@ -619,6 +644,7 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
     <script src="js/jquery.simple-text-rotator.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/custom.js"></script>

@@ -310,9 +310,23 @@ h2.text-center {
     font-family: 'Roboto', sans-serif;
     padding: 10px 0;
 }
+.correct{
+    background: green;
+    text-align: center;
+}
+
+.status-fields{
+    background: rgba(224, 49, 50, 1);
+    color: white;
+    animation: wow linear 0.5s 4;
+    text-align: center;
+}
 label {
     display: inline-block;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
+}
+.form-check-label{
+    padding-bottom: 15px;
 }
 
 h2.cont {
@@ -634,6 +648,9 @@ h3.footer {
         margin-left: 40px;
         margin-right: 40px;
     }
+    .oculta-lg{
+        display: none;
+    }
 }
 
 @media screen and (max-width:767px){ 
@@ -650,6 +667,9 @@ h3.footer {
    .imagen-logo{
         display: block;
         margin: 50px auto 0 auto;
+    }
+    .oculta-md{
+        display:none;
     }
    
 }
